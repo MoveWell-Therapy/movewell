@@ -32,19 +32,34 @@ body {
 
 /* ── TOP BAR ── */
 header {
-  background: rgba(30,33,38,0.95);
+  background: rgba(30,33,38,0.97);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  padding: 1rem 5vw;
+  padding: 0.85rem 5vw;
   display: flex; align-items: center; justify-content: space-between;
   position: sticky; top: 0; z-index: 100;
 }
-.logo {
+
+/* ── LOGO ── */
+.logo-wrap {
+  display: flex; align-items: center; gap: 0;
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 1.6rem; letter-spacing: 1px;
+  font-weight: 900;
+  font-size: 1.75rem;
+  letter-spacing: 1px;
   color: #fff;
+  text-transform: uppercase;
+  line-height: 1;
 }
-.logo span { color: var(--orange); }
+.logo-runner {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 0 1px;
+  position: relative; top: -1px;
+}
+.logo-runner svg {
+  width: 28px; height: 28px;
+}
+
 .header-badge {
   background: rgba(245,166,35,0.12);
   border: 1px solid rgba(245,166,35,0.25);
@@ -380,34 +395,11 @@ input[type=range]::-webkit-slider-thumb {
 .submit-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
 .submit-btn:active { transform: translateY(0); }
 
-/* SUCCESS SCREEN */
-.success-screen {
-  display: none; text-align: center; padding: 4rem 2rem;
-}
-.success-screen.show { display: block; }
-.success-icon {
-  width: 80px; height: 80px; border-radius: 50%;
-  background: rgba(76,175,125,0.15); border: 2px solid var(--success);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.5rem; margin: 0 auto 1.5rem;
-}
-.success-screen h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 2rem; text-transform: uppercase;
-  margin-bottom: 0.8rem;
-}
-.success-screen p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
-.order-id {
-  display: inline-block; margin-top: 1.5rem;
-  background: var(--panel2); border: 1px solid var(--border);
-  border-radius: 6px; padding: 0.6rem 1.2rem;
-  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
-  color: var(--orange); letter-spacing: 2px;
-}
-
-/* VALIDATION */
-.field-error { font-size: 0.76rem; color: var(--error); margin-top: 0.2rem; display: none; }
-input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
+/* ANIMATIONS */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.form-panel { animation: fadeIn 0.4s ease both; }
+.form-panel:nth-child(2) { animation-delay: 0.08s; }
+.form-panel:nth-child(3) { animation-delay: 0.16s; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -418,18 +410,34 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
   .field-row { grid-template-columns: 1fr; }
   .option-grid { grid-template-columns: 1fr 1fr; }
 }
-
-/* ANIMATIONS */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-.form-panel { animation: fadeIn 0.4s ease both; }
-.form-panel:nth-child(2) { animation-delay: 0.08s; }
-.form-panel:nth-child(3) { animation-delay: 0.16s; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">MO<span>✦</span>EWELL</div>
+  <!-- MoveWell logo matching the uploaded brand mark -->
+  <div class="logo-wrap">
+    MO
+    <span class="logo-runner">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- head -->
+        <circle cx="22" cy="6" r="4" fill="#F5A623"/>
+        <!-- body leaning forward -->
+        <line x1="22" y1="10" x2="14" y2="20" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+        <!-- left arm back -->
+        <line x1="18" y1="14" x2="26" y2="10" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+        <!-- right arm forward -->
+        <line x1="18" y1="14" x2="10" y2="18" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+        <!-- left leg forward -->
+        <line x1="14" y1="20" x2="8" y2="30" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+        <!-- right leg back -->
+        <line x1="14" y1="20" x2="22" y2="28" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+        <!-- foot back flick -->
+        <line x1="22" y1="28" x2="28" y2="24" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </span>
+    EWELL
+  </div>
   <div class="header-badge">🔒 Secure Order</div>
 </header>
 
@@ -438,7 +446,7 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
   <h1>Get Your <em>Personalized</em><br>Recovery Device</h1>
   <p>Tell us about yourself — we'll configure your MoveWell device with physiotherapist input and deliver it to your doorstep in 10 days.</p>
   <div class="price-pill">
-    <span class="amount">₹499</span>
+    <span class="amount">$25</span>
     <span class="note">one-time device — early adopter price</span>
   </div>
 </div>
@@ -479,11 +487,11 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
         <div class="field-row">
           <div class="field">
             <label>First Name <span class="req">*</span></label>
-            <input type="text" id="fname" placeholder="Malay" oninput="liveUpdate()">
+            <input type="text" id="fname" placeholder="Alex" oninput="liveUpdate()">
           </div>
           <div class="field">
             <label>Last Name <span class="req">*</span></label>
-            <input type="text" id="lname" placeholder="Patel" oninput="liveUpdate()">
+            <input type="text" id="lname" placeholder="Johnson" oninput="liveUpdate()">
           </div>
         </div>
         <div class="field-row">
@@ -493,13 +501,13 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
           </div>
           <div class="field">
             <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="phone" placeholder="+91 98765 43210" oninput="liveUpdate()">
+            <input type="tel" id="phone" placeholder="(555) 000-0000" oninput="liveUpdate()">
           </div>
         </div>
         <div class="field-row">
           <div class="field">
             <label>Age <span class="req">*</span></label>
-            <input type="number" id="age" placeholder="25" min="10" max="80" oninput="liveUpdate()">
+            <input type="number" id="age" placeholder="28" min="10" max="80" oninput="liveUpdate()">
           </div>
           <div class="field">
             <label>Gender</label>
@@ -694,44 +702,48 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
         <div class="field-row full">
           <div class="field">
             <label>Street Address <span class="req">*</span></label>
-            <input type="text" id="addr1" placeholder="Flat / House No., Street Name" oninput="liveUpdate()">
+            <input type="text" id="addr1" placeholder="123 Main St, Apt 4B" oninput="liveUpdate()">
           </div>
         </div>
         <div class="field-row">
           <div class="field">
             <label>City <span class="req">*</span></label>
-            <input type="text" id="city" placeholder="Mumbai" oninput="liveUpdate()">
+            <input type="text" id="city" placeholder="Los Angeles" oninput="liveUpdate()">
           </div>
           <div class="field">
             <label>State <span class="req">*</span></label>
             <select id="state" onchange="liveUpdate()">
               <option value="">Select state…</option>
-              <option>Maharashtra</option>
-              <option>Delhi</option>
-              <option>Karnataka</option>
-              <option>Tamil Nadu</option>
-              <option>Gujarat</option>
-              <option>Rajasthan</option>
-              <option>West Bengal</option>
-              <option>Uttar Pradesh</option>
-              <option>Punjab</option>
-              <option>Haryana</option>
-              <option>Telangana</option>
-              <option>Kerala</option>
-              <option>Other</option>
+              <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+              <option>Arkansas</option><option>California</option><option>Colorado</option>
+              <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+              <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+              <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+              <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+              <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+              <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+              <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+              <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+              <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+              <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+              <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+              <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+              <option>Texas</option><option>Utah</option><option>Vermont</option>
+              <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+              <option>Wisconsin</option><option>Wyoming</option>
             </select>
           </div>
         </div>
         <div class="field-row">
           <div class="field">
-            <label>PIN Code <span class="req">*</span></label>
-            <input type="text" id="pin" placeholder="400001" maxlength="6" oninput="liveUpdate()">
+            <label>ZIP Code <span class="req">*</span></label>
+            <input type="text" id="pin" placeholder="90210" maxlength="5" oninput="liveUpdate()">
           </div>
           <div class="field">
             <label>Delivery Speed</label>
             <select id="delivery" onchange="updateDelivery()">
               <option value="standard">Standard — 10 days (Free)</option>
-              <option value="express">Express — 5 days (+₹299)</option>
+              <option value="express">Express — 5 days (+$9.99)</option>
             </select>
           </div>
         </div>
@@ -744,7 +756,7 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
             <option value="">Select…</option>
             <option>Instagram / Social Media</option>
             <option>Referred by a friend / athlete</option>
-            <option>Physiotherapist</option>
+            <option>Physical Therapist</option>
             <option>Event / Expo</option>
             <option>Google Search</option>
             <option>Other</option>
@@ -800,7 +812,7 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
         </div>
         <div class="summary-row">
           <span class="label">MoveWell Device</span>
-          <span class="val">₹499</span>
+          <span class="val">$25.00</span>
         </div>
         <div class="summary-row">
           <span class="label">Shipping</span>
@@ -809,7 +821,7 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
       </div>
       <div class="total-row">
         <span class="label">Total</span>
-        <span class="price" id="sum-total">₹499</span>
+        <span class="price" id="sum-total">$25.00</span>
       </div>
       <div style="padding: 1rem 1.5rem 1.5rem;">
         <button class="submit-btn" onclick="submitOrder()">
@@ -819,7 +831,7 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
       <div class="trust-list">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure & encrypted checkout</div>
         <div class="trust-item"><span class="trust-icon">📦</span> Delivered in 10 days, guaranteed</div>
-        <div class="trust-item"><span class="trust-icon">🩺</span> Physiotherapist-configured plan</div>
+        <div class="trust-item"><span class="trust-icon">🩺</span> PT-configured recovery plan</div>
         <div class="trust-item"><span class="trust-icon">↩️</span> 30-day hassle-free returns</div>
       </div>
     </div>
@@ -829,41 +841,37 @@ input.invalid, select.invalid, textarea.invalid { border-color: var(--error); }
 
 <!-- SUCCESS SCREEN (hidden) -->
 <div id="successScreen" style="display:none; padding: 6rem 5vw; text-align:center;">
-  <div class="success-icon">✅</div>
+  <div style="width:80px;height:80px;border-radius:50%;background:rgba(76,175,125,0.15);border:2px solid #4CAF7D;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 1.5rem;">✅</div>
   <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;text-transform:uppercase;margin-bottom:0.8rem;">
     Order Placed!
   </h2>
   <p style="color:var(--muted);font-size:1rem;line-height:1.7;max-width:480px;margin:0 auto;">
-    Your MoveWell device is being configured with physiotherapist input based on your profile. You'll receive a confirmation email shortly.
+    Your MoveWell device is being configured with physical therapist input based on your profile. You'll receive a confirmation email shortly.
   </p>
-  <div class="order-id" id="orderIdDisplay">MW-000000</div>
+  <div style="display:inline-block;margin-top:1.5rem;background:var(--panel2);border:1px solid var(--border);border-radius:6px;padding:0.6rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:var(--orange);letter-spacing:2px;" id="orderIdDisplay">MW-000000</div>
   <p style="color:var(--muted);font-size:0.85rem;margin-top:2rem;">
     Expected delivery: <strong style="color:var(--text);" id="deliveryDate">—</strong>
   </p>
 </div>
 
 <script>
-// ── Radio select (single choice per group)
 function selectOpt(el, group) {
   document.querySelectorAll(`.opt-label[onclick*="${group}"]`).forEach(l => l.classList.remove('selected'));
   el.classList.add('selected');
   liveUpdate();
 }
 
-// ── Checkbox multi-select (max 3 for goals)
 function toggleCheck(el) {
   const selected = document.querySelectorAll('.opt-label.check.selected');
   if (!el.classList.contains('selected') && selected.length >= 3) return;
   el.classList.toggle('selected');
 }
 
-// ── Body part toggle
 function togglePart(el) {
   el.classList.toggle('active');
   liveUpdate();
 }
 
-// ── Live summary update
 function liveUpdate() {
   const fname = document.getElementById('fname').value.trim();
   const lname = document.getElementById('lname').value.trim();
@@ -878,7 +886,6 @@ function liveUpdate() {
   const city = document.getElementById('city').value.trim();
   document.getElementById('sum-city').textContent = city || '—';
 
-  // progress steps
   updateSteps();
 }
 
@@ -886,26 +893,22 @@ function updateDelivery() {
   const d = document.getElementById('delivery').value;
   if (d === 'express') {
     document.getElementById('sum-delivery').textContent = 'Express (5 days)';
-    document.getElementById('sum-shipping').textContent = '₹299';
-    document.getElementById('sum-total').textContent = '₹798';
+    document.getElementById('sum-shipping').textContent = '$9.99';
+    document.getElementById('sum-total').textContent = '$34.99';
   } else {
     document.getElementById('sum-delivery').textContent = 'Standard (10 days)';
     document.getElementById('sum-shipping').textContent = 'Free';
-    document.getElementById('sum-total').textContent = '₹499';
+    document.getElementById('sum-total').textContent = '$25.00';
   }
 }
 
-// ── Step indicator update
 function updateSteps() {
   const fname = document.getElementById('fname').value.trim();
   const lname = document.getElementById('lname').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
   const age   = document.getElementById('age').value.trim();
-
   const sport = document.getElementById('sport').value;
-  const freq  = document.querySelector('.opt-label[onclick*="freq"].selected');
-
   const city  = document.getElementById('city').value.trim();
   const state = document.getElementById('state').value;
   const pin   = document.getElementById('pin').value.trim();
@@ -917,7 +920,7 @@ function updateSteps() {
   const done4 = city && state && pin && addr1;
 
   setStep(1, 'active', done1);
-  setStep(2, done1 ? (done2 ? 'active' : 'active') : '', done2);
+  setStep(2, done1 ? 'active' : '', done2);
   setStep(3, done2 ? 'active' : '', done3);
   setStep(4, done3 ? 'active' : '', done4);
 }
@@ -929,7 +932,6 @@ function setStep(n, active, done) {
   else if (active) el.classList.add('active');
 }
 
-// ── Submit
 function submitOrder() {
   const required = ['fname','lname','email','phone','age','addr1','city','state','pin'];
   let ok = true;
@@ -958,16 +960,12 @@ function submitOrder() {
     return;
   }
 
-  // Build order ID
   const orderId = 'MW-' + Math.random().toString(36).substr(2,6).toUpperCase();
-
-  // Compute delivery date
   const days = document.getElementById('delivery').value === 'express' ? 5 : 10;
   const d = new Date(); d.setDate(d.getDate() + days);
   const opts = {weekday:'long', year:'numeric', month:'long', day:'numeric'};
-  const dateStr = d.toLocaleDateString('en-IN', opts);
+  const dateStr = d.toLocaleDateString('en-US', opts);
 
-  // Show success
   document.getElementById('formArea').style.display = 'none';
   document.getElementById('successScreen').style.display = 'block';
   document.getElementById('orderIdDisplay').textContent = orderId;
@@ -975,7 +973,6 @@ function submitOrder() {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// Init
 liveUpdate();
 </script>
 </body>
