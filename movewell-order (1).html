@@ -30,7 +30,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── TOP BAR ── */
 header {
   background: rgba(30,33,38,0.97);
   backdrop-filter: blur(16px);
@@ -40,24 +39,8 @@ header {
   position: sticky; top: 0; z-index: 100;
 }
 
-/* ── LOGO ── */
 .logo-wrap {
-  display: flex; align-items: center; gap: 0;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: 1.75rem;
-  letter-spacing: 1px;
-  color: #fff;
-  text-transform: uppercase;
-  line-height: 1;
-}
-.logo-runner {
-  display: inline-flex; align-items: center; justify-content: center;
-  margin: 0 1px;
-  position: relative; top: -1px;
-}
-.logo-runner svg {
-  width: 28px; height: 28px;
+  display: flex; align-items: center;
 }
 
 .header-badge {
@@ -69,7 +52,6 @@ header {
   text-transform: uppercase;
 }
 
-/* ── HERO STRIP ── */
 .hero-strip {
   background: linear-gradient(135deg, var(--panel) 0%, #1A1D22 100%);
   border-bottom: 1px solid var(--border);
@@ -117,14 +99,8 @@ header {
 }
 .price-pill .note { font-size: 0.8rem; color: var(--muted); }
 
-/* ── PROGRESS BAR ── */
-.progress-wrap {
-  padding: 2rem 5vw 0;
-}
-.steps-bar {
-  display: flex; align-items: center; gap: 0;
-  max-width: 680px;
-}
+.progress-wrap { padding: 2rem 5vw 0; }
+.steps-bar { display: flex; align-items: center; gap: 0; max-width: 680px; }
 .step-item {
   display: flex; flex-direction: column; align-items: center;
   flex: 1; position: relative;
@@ -143,40 +119,27 @@ header {
   font-weight: 700; font-size: 0.8rem; color: var(--muted);
   position: relative; z-index: 1; transition: all 0.3s;
 }
-.step-item.active .step-dot {
-  background: var(--orange); border-color: var(--orange); color: var(--dark);
-}
-.step-item.done .step-dot {
-  background: var(--orange); border-color: var(--orange); color: var(--dark);
-}
+.step-item.active .step-dot { background: var(--orange); border-color: var(--orange); color: var(--dark); }
+.step-item.done .step-dot { background: var(--orange); border-color: var(--orange); color: var(--dark); }
 .step-item.done .step-dot::before { content: '✓'; }
 .step-label {
   font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem;
-  text-align: center; white-space: nowrap;
-  font-weight: 500; letter-spacing: 0.3px;
+  text-align: center; white-space: nowrap; font-weight: 500; letter-spacing: 0.3px;
 }
 .step-item.active .step-label { color: var(--orange); }
 
-/* ── MAIN LAYOUT ── */
 .main {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 2rem;
-  padding: 2rem 5vw 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 2rem; padding: 2rem 5vw 4rem;
+  max-width: 1200px; margin: 0 auto; align-items: start;
 }
 
-/* ── FORM PANELS ── */
 .form-panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
+  background: var(--panel); border: 1px solid var(--border);
   border-radius: 12px; overflow: hidden;
 }
 .panel-header {
-  padding: 1.4rem 2rem;
-  border-bottom: 1px solid var(--border);
+  padding: 1.4rem 2rem; border-bottom: 1px solid var(--border);
   display: flex; align-items: center; gap: 0.8rem;
 }
 .panel-num {
@@ -188,16 +151,11 @@ header {
 }
 .panel-header h2 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800; font-size: 1.2rem; text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.5px;
 }
 .panel-body { padding: 1.8rem 2rem; }
 
-/* ── FORM FIELDS ── */
-.field-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-  margin-bottom: 1rem;
-}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
 .field-row.full { grid-template-columns: 1fr; }
 .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
 .field label {
@@ -208,17 +166,11 @@ header {
 
 input[type=text], input[type=email], input[type=tel], input[type=number],
 select, textarea {
-  background: var(--panel2);
-  border: 1.5px solid var(--border);
-  border-radius: 7px;
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  padding: 0.75rem 1rem;
-  width: 100%;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  appearance: none;
+  background: var(--panel2); border: 1.5px solid var(--border);
+  border-radius: 7px; color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+  padding: 0.75rem 1rem; width: 100%; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s; appearance: none;
 }
 input::placeholder, textarea::placeholder { color: var(--muted); }
 input:focus, select:focus, textarea:focus {
@@ -228,41 +180,27 @@ input:focus, select:focus, textarea:focus {
 textarea { resize: vertical; min-height: 90px; }
 select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237D8490' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
-  cursor: pointer;
+  background-repeat: no-repeat; background-position: right 1rem center;
+  padding-right: 2.5rem; cursor: pointer;
 }
 
-/* RADIO / CHECKBOX GROUPS */
-.option-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.6rem;
-}
+.option-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.6rem; }
 .option-grid.two-col { grid-template-columns: 1fr 1fr; }
 .opt-label {
   display: flex; align-items: center; gap: 0.6rem;
   background: var(--panel2); border: 1.5px solid var(--border);
   border-radius: 7px; padding: 0.65rem 0.9rem;
   cursor: pointer; font-size: 0.88rem; font-weight: 500;
-  transition: border-color 0.2s, background 0.2s;
-  user-select: none;
+  transition: border-color 0.2s, background 0.2s; user-select: none;
 }
-.opt-label input { display: none; }
 .opt-label:hover { border-color: rgba(245,166,35,0.3); }
-.opt-label.selected {
-  border-color: var(--orange);
-  background: rgba(245,166,35,0.08);
-  color: var(--orange);
-}
+.opt-label.selected { border-color: var(--orange); background: rgba(245,166,35,0.08); color: var(--orange); }
 .opt-dot {
   width: 16px; height: 16px; border-radius: 50%;
-  border: 2px solid var(--muted); flex-shrink: 0;
-  transition: all 0.2s;
+  border: 2px solid var(--muted); flex-shrink: 0; transition: all 0.2s;
 }
 .opt-label.selected .opt-dot {
-  border-color: var(--orange);
-  background: var(--orange);
+  border-color: var(--orange); background: var(--orange);
   box-shadow: 0 0 0 3px rgba(245,166,35,0.2);
 }
 .check-dot {
@@ -276,51 +214,33 @@ select {
 }
 .opt-label.selected .check-dot::before { content: '✓'; }
 
-/* PAIN BODY MAP */
-.body-map {
-  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;
-}
+.body-map { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
 .body-part {
   padding: 0.45rem 0.9rem; border-radius: 20px;
   border: 1.5px solid var(--border); font-size: 0.82rem; font-weight: 500;
-  cursor: pointer; transition: all 0.2s; user-select: none;
-  background: var(--panel2);
+  cursor: pointer; transition: all 0.2s; user-select: none; background: var(--panel2);
 }
 .body-part:hover { border-color: rgba(245,166,35,0.4); }
-.body-part.active {
-  border-color: var(--orange); background: rgba(245,166,35,0.1); color: var(--orange);
-}
+.body-part.active { border-color: var(--orange); background: rgba(245,166,35,0.1); color: var(--orange); }
 
-/* SLIDER */
 .slider-wrap { padding: 0.5rem 0; }
 input[type=range] {
-  -webkit-appearance: none;
-  width: 100%; height: 4px; border-radius: 2px;
-  background: var(--panel2); border: none; padding: 0;
-  outline: none; cursor: pointer;
+  -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px;
+  background: var(--panel2); border: none; padding: 0; outline: none; cursor: pointer;
 }
 input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px; height: 20px; border-radius: 50%;
+  -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
   background: var(--orange); border: 3px solid var(--dark);
-  box-shadow: 0 0 0 2px var(--orange);
-  cursor: pointer;
+  box-shadow: 0 0 0 2px var(--orange); cursor: pointer;
 }
-.slider-labels {
-  display: flex; justify-content: space-between;
-  font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem;
-}
+.slider-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; }
 .slider-val {
   text-align: center; font-family: 'Barlow Condensed', sans-serif;
   font-weight: 800; font-size: 1.4rem; color: var(--orange); margin-bottom: 0.3rem;
 }
 
-/* DIVIDER */
-.divider {
-  border: none; border-top: 1px solid var(--border); margin: 1.5rem 0;
-}
+.divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 
-/* SECTION SUBTITLE */
 .sub-label {
   font-size: 0.72rem; font-weight: 700; color: var(--orange);
   letter-spacing: 1.5px; text-transform: uppercase;
@@ -329,12 +249,10 @@ input[type=range]::-webkit-slider-thumb {
 }
 .sub-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* ── SIDEBAR ── */
 .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
-
 .summary-card {
-  background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-  overflow: hidden; position: sticky; top: 80px;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; position: sticky; top: 80px;
 }
 .summary-head {
   background: var(--orange); padding: 1.2rem 1.5rem;
@@ -342,8 +260,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 .summary-head h3 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 1.1rem; text-transform: uppercase;
-  color: var(--dark);
+  font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: var(--dark);
 }
 .summary-head .tag2 {
   background: rgba(28,31,36,0.2); color: var(--dark);
@@ -353,8 +270,7 @@ input[type=range]::-webkit-slider-thumb {
 .summary-body { padding: 1.4rem 1.5rem; }
 .summary-row {
   display: flex; justify-content: space-between; align-items: baseline;
-  padding: 0.65rem 0; border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
+  padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem;
 }
 .summary-row:last-child { border-bottom: none; }
 .summary-row .label { color: var(--muted); }
@@ -364,44 +280,29 @@ input[type=range]::-webkit-slider-thumb {
   padding: 1rem 1.5rem; border-top: 1px solid rgba(245,166,35,0.2);
   background: rgba(245,166,35,0.04);
 }
-.total-row .label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800; font-size: 1rem; text-transform: uppercase;
-}
-.total-row .price {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 1.8rem; color: var(--orange);
-}
+.total-row .label { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; }
+.total-row .price { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--orange); }
 
-/* TRUST BADGES */
 .trust-list { display: flex; flex-direction: column; gap: 0.7rem; padding: 1.2rem 1.5rem; }
-.trust-item {
-  display: flex; align-items: center; gap: 0.7rem;
-  font-size: 0.83rem; color: var(--muted);
-}
+.trust-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.83rem; color: var(--muted); }
 .trust-icon { font-size: 1rem; flex-shrink: 0; }
 
-/* SUBMIT BUTTON */
 .submit-btn {
-  width: 100%; background: var(--orange);
-  border: none; border-radius: 8px;
+  width: 100%; background: var(--orange); border: none; border-radius: 8px;
   color: var(--dark); font-family: 'Barlow Condensed', sans-serif;
   font-weight: 900; font-size: 1.2rem; text-transform: uppercase;
-  letter-spacing: 1px; padding: 1rem;
-  cursor: pointer; transition: background 0.2s, transform 0.15s;
-  margin-top: 0.5rem;
+  letter-spacing: 1px; padding: 1rem; cursor: pointer;
+  transition: background 0.2s, transform 0.15s; margin-top: 0.5rem;
   display: flex; align-items: center; justify-content: center; gap: 0.5rem;
 }
 .submit-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
 .submit-btn:active { transform: translateY(0); }
 
-/* ANIMATIONS */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .form-panel { animation: fadeIn 0.4s ease both; }
 .form-panel:nth-child(2) { animation-delay: 0.08s; }
 .form-panel:nth-child(3) { animation-delay: 0.16s; }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
   .main { grid-template-columns: 1fr; }
   .summary-card { position: static; }
@@ -415,28 +316,10 @@ input[type=range]::-webkit-slider-thumb {
 <body>
 
 <header>
-  <!-- MoveWell logo matching the uploaded brand mark -->
   <div class="logo-wrap">
-    MO
-    <span class="logo-runner">
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- head -->
-        <circle cx="22" cy="6" r="4" fill="#F5A623"/>
-        <!-- body leaning forward -->
-        <line x1="22" y1="10" x2="14" y2="20" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
-        <!-- left arm back -->
-        <line x1="18" y1="14" x2="26" y2="10" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
-        <!-- right arm forward -->
-        <line x1="18" y1="14" x2="10" y2="18" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
-        <!-- left leg forward -->
-        <line x1="14" y1="20" x2="8" y2="30" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
-        <!-- right leg back -->
-        <line x1="14" y1="20" x2="22" y2="28" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
-        <!-- foot back flick -->
-        <line x1="22" y1="28" x2="28" y2="24" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </span>
-    EWELL
+    <img src="https://raw.githubusercontent.com/MoveWell-Therapy/movewell/fae11083808dc59e0caed85acf4955a1d6755bd0/MOVEWELL%20(1)_page-0001.jpg"
+         alt="MoveWell"
+         style="height: 40px; width: auto; object-fit: contain;">
   </div>
   <div class="header-badge">🔒 Secure Order</div>
 </header>
@@ -474,10 +357,8 @@ input[type=range]::-webkit-slider-thumb {
 
 <div class="main" id="formArea">
 
-  <!-- ─── LEFT COLUMN: FORM ─── -->
   <div id="formCol">
 
-    <!-- SECTION 1: Personal Info -->
     <div class="form-panel" id="panel1">
       <div class="panel-header">
         <div class="panel-num">1</div>
@@ -523,14 +404,12 @@ input[type=range]::-webkit-slider-thumb {
       </div>
     </div>
 
-    <!-- SECTION 2: Body & Activity -->
     <div class="form-panel" id="panel2" style="margin-top:1.5rem;">
       <div class="panel-header">
         <div class="panel-num">2</div>
         <h2>Body Profile & Activity Level</h2>
       </div>
       <div class="panel-body">
-
         <div class="sub-label">Your Lifestyle</div>
         <div class="field">
           <label>Primary Activity / Sport <span class="req">*</span></label>
@@ -549,25 +428,15 @@ input[type=range]::-webkit-slider-thumb {
             <option>Other</option>
           </select>
         </div>
-
         <div class="field">
           <label>Training Frequency</label>
           <div class="option-grid two-col">
-            <label class="opt-label" onclick="selectOpt(this,'freq')">
-              <div class="opt-dot"></div> Casual (1–2×/week)
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'freq')">
-              <div class="opt-dot"></div> Moderate (3–4×/week)
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'freq')">
-              <div class="opt-dot"></div> Intense (5–6×/week)
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'freq')">
-              <div class="opt-dot"></div> Professional / Daily
-            </label>
+            <label class="opt-label" onclick="selectOpt(this,'freq')"><div class="opt-dot"></div> Casual (1–2×/week)</label>
+            <label class="opt-label" onclick="selectOpt(this,'freq')"><div class="opt-dot"></div> Moderate (3–4×/week)</label>
+            <label class="opt-label" onclick="selectOpt(this,'freq')"><div class="opt-dot"></div> Intense (5–6×/week)</label>
+            <label class="opt-label" onclick="selectOpt(this,'freq')"><div class="opt-dot"></div> Professional / Daily</label>
           </div>
         </div>
-
         <div class="sub-label">Sitting & Posture</div>
         <div class="field">
           <label>How many hours do you sit per day?</label>
@@ -578,39 +447,25 @@ input[type=range]::-webkit-slider-thumb {
             <div class="slider-labels"><span>1h</span><span>4h</span><span>8h</span><span>12h+</span></div>
           </div>
         </div>
-
         <div class="field">
           <label>How would you describe your current posture?</label>
           <div class="option-grid">
-            <label class="opt-label" onclick="selectOpt(this,'posture')">
-              <div class="opt-dot"></div> Upright ✅
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'posture')">
-              <div class="opt-dot"></div> Slightly hunched
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'posture')">
-              <div class="opt-dot"></div> Forward head
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'posture')">
-              <div class="opt-dot"></div> Rounded shoulders
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'posture')">
-              <div class="opt-dot"></div> Not sure
-            </label>
+            <label class="opt-label" onclick="selectOpt(this,'posture')"><div class="opt-dot"></div> Upright ✅</label>
+            <label class="opt-label" onclick="selectOpt(this,'posture')"><div class="opt-dot"></div> Slightly hunched</label>
+            <label class="opt-label" onclick="selectOpt(this,'posture')"><div class="opt-dot"></div> Forward head</label>
+            <label class="opt-label" onclick="selectOpt(this,'posture')"><div class="opt-dot"></div> Rounded shoulders</label>
+            <label class="opt-label" onclick="selectOpt(this,'posture')"><div class="opt-dot"></div> Not sure</label>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- SECTION 3: Pain & Recovery Goals -->
     <div class="form-panel" id="panel3" style="margin-top:1.5rem;">
       <div class="panel-header">
         <div class="panel-num">3</div>
         <h2>Pain Areas & Recovery Goals</h2>
       </div>
       <div class="panel-body">
-
         <div class="sub-label">Where do you feel pain or tightness?</div>
         <div class="field">
           <label>Select all that apply</label>
@@ -629,7 +484,6 @@ input[type=range]::-webkit-slider-thumb {
             <div class="body-part" onclick="togglePart(this)">💡 Other</div>
           </div>
         </div>
-
         <div class="field">
           <label>Pain severity (average)</label>
           <div class="slider-wrap">
@@ -639,66 +493,40 @@ input[type=range]::-webkit-slider-thumb {
             <div class="slider-labels"><span>Mild (1)</span><span>Moderate (5)</span><span>Severe (10)</span></div>
           </div>
         </div>
-
         <div class="sub-label">Your Recovery Goals</div>
         <div class="field">
           <label>What matters most to you? (pick up to 3)</label>
           <div class="option-grid">
-            <label class="opt-label check" onclick="toggleCheck(this)">
-              <div class="check-dot"></div> Reduce Pain
-            </label>
-            <label class="opt-label check" onclick="toggleCheck(this)">
-              <div class="check-dot"></div> Improve Mobility
-            </label>
-            <label class="opt-label check" onclick="toggleCheck(this)">
-              <div class="check-dot"></div> Faster Recovery
-            </label>
-            <label class="opt-label check" onclick="toggleCheck(this)">
-              <div class="check-dot"></div> Better Posture
-            </label>
-            <label class="opt-label check" onclick="toggleCheck(this)">
-              <div class="check-dot"></div> Prevent Injury
-            </label>
-            <label class="opt-label check" onclick="toggleCheck(this)">
-              <div class="check-dot"></div> Boost Performance
-            </label>
+            <label class="opt-label check" onclick="toggleCheck(this)"><div class="check-dot"></div> Reduce Pain</label>
+            <label class="opt-label check" onclick="toggleCheck(this)"><div class="check-dot"></div> Improve Mobility</label>
+            <label class="opt-label check" onclick="toggleCheck(this)"><div class="check-dot"></div> Faster Recovery</label>
+            <label class="opt-label check" onclick="toggleCheck(this)"><div class="check-dot"></div> Better Posture</label>
+            <label class="opt-label check" onclick="toggleCheck(this)"><div class="check-dot"></div> Prevent Injury</label>
+            <label class="opt-label check" onclick="toggleCheck(this)"><div class="check-dot"></div> Boost Performance</label>
           </div>
         </div>
-
         <div class="field">
           <label>Have you used recovery tools before?</label>
           <div class="option-grid two-col">
-            <label class="opt-label" onclick="selectOpt(this,'prior')">
-              <div class="opt-dot"></div> Yes — didn't help much
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'prior')">
-              <div class="opt-dot"></div> Yes — somewhat helpful
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'prior')">
-              <div class="opt-dot"></div> No — first time
-            </label>
-            <label class="opt-label" onclick="selectOpt(this,'prior')">
-              <div class="opt-dot"></div> I use physio/trainer
-            </label>
+            <label class="opt-label" onclick="selectOpt(this,'prior')"><div class="opt-dot"></div> Yes — didn't help much</label>
+            <label class="opt-label" onclick="selectOpt(this,'prior')"><div class="opt-dot"></div> Yes — somewhat helpful</label>
+            <label class="opt-label" onclick="selectOpt(this,'prior')"><div class="opt-dot"></div> No — first time</label>
+            <label class="opt-label" onclick="selectOpt(this,'prior')"><div class="opt-dot"></div> I use physio/trainer</label>
           </div>
         </div>
-
         <div class="field">
           <label>Anything else we should know? (Injuries, conditions, notes)</label>
           <textarea id="notes" placeholder="e.g. had a knee surgery last year, tight hip flexors from cycling…" oninput="liveUpdate()"></textarea>
         </div>
-
       </div>
     </div>
 
-    <!-- SECTION 4: Delivery -->
     <div class="form-panel" id="panel4" style="margin-top:1.5rem;">
       <div class="panel-header">
         <div class="panel-num">4</div>
         <h2>Delivery Details</h2>
       </div>
       <div class="panel-body">
-
         <div class="field-row full">
           <div class="field">
             <label>Street Address <span class="req">*</span></label>
@@ -747,9 +575,7 @@ input[type=range]::-webkit-slider-thumb {
             </select>
           </div>
         </div>
-
         <hr class="divider">
-
         <div class="field">
           <label>How did you hear about MoveWell?</label>
           <select id="source">
@@ -762,27 +588,23 @@ input[type=range]::-webkit-slider-thumb {
             <option>Other</option>
           </select>
         </div>
-
         <div class="field">
           <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;text-transform:none;letter-spacing:0;font-size:0.85rem;color:var(--text);font-weight:500;">
-            <input type="checkbox" id="agreeTerms" style="width:auto;padding:0;accent-color:var(--orange);width:16px;height:16px;">
+            <input type="checkbox" id="agreeTerms" style="width:16px;height:16px;padding:0;accent-color:var(--orange);">
             I agree to MoveWell's <a href="#" style="color:var(--orange);">Terms & Conditions</a> and <a href="#" style="color:var(--orange);">Privacy Policy</a> <span class="req">*</span>
           </label>
         </div>
-
         <div class="field">
           <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;text-transform:none;letter-spacing:0;font-size:0.85rem;color:var(--muted);font-weight:400;">
-            <input type="checkbox" id="newsletter" style="width:auto;padding:0;accent-color:var(--orange);width:16px;height:16px;" checked>
+            <input type="checkbox" id="newsletter" style="width:16px;height:16px;padding:0;accent-color:var(--orange);" checked>
             Send me recovery tips and product updates
           </label>
         </div>
-
       </div>
     </div>
 
-  </div><!-- end formCol -->
+  </div>
 
-  <!-- ─── RIGHT COLUMN: SIDEBAR ─── -->
   <div class="sidebar">
     <div class="summary-card">
       <div class="summary-head">
@@ -790,43 +612,20 @@ input[type=range]::-webkit-slider-thumb {
         <span class="tag2">Preview</span>
       </div>
       <div class="summary-body">
-        <div class="summary-row">
-          <span class="label">Name</span>
-          <span class="val" id="sum-name">—</span>
-        </div>
-        <div class="summary-row">
-          <span class="label">Activity</span>
-          <span class="val" id="sum-sport">—</span>
-        </div>
-        <div class="summary-row">
-          <span class="label">Focus Areas</span>
-          <span class="val" id="sum-parts">—</span>
-        </div>
-        <div class="summary-row">
-          <span class="label">City</span>
-          <span class="val" id="sum-city">—</span>
-        </div>
-        <div class="summary-row">
-          <span class="label">Delivery</span>
-          <span class="val" id="sum-delivery">Standard (10 days)</span>
-        </div>
-        <div class="summary-row">
-          <span class="label">MoveWell Device</span>
-          <span class="val">$25.00</span>
-        </div>
-        <div class="summary-row">
-          <span class="label">Shipping</span>
-          <span class="val" id="sum-shipping">Free</span>
-        </div>
+        <div class="summary-row"><span class="label">Name</span><span class="val" id="sum-name">—</span></div>
+        <div class="summary-row"><span class="label">Activity</span><span class="val" id="sum-sport">—</span></div>
+        <div class="summary-row"><span class="label">Focus Areas</span><span class="val" id="sum-parts">—</span></div>
+        <div class="summary-row"><span class="label">City</span><span class="val" id="sum-city">—</span></div>
+        <div class="summary-row"><span class="label">Delivery</span><span class="val" id="sum-delivery">Standard (10 days)</span></div>
+        <div class="summary-row"><span class="label">MoveWell Device</span><span class="val">$25.00</span></div>
+        <div class="summary-row"><span class="label">Shipping</span><span class="val" id="sum-shipping">Free</span></div>
       </div>
       <div class="total-row">
         <span class="label">Total</span>
         <span class="price" id="sum-total">$25.00</span>
       </div>
       <div style="padding: 1rem 1.5rem 1.5rem;">
-        <button class="submit-btn" onclick="submitOrder()">
-          ⚡ Place Order
-        </button>
+        <button class="submit-btn" onclick="submitOrder()">⚡ Place Order</button>
       </div>
       <div class="trust-list">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure & encrypted checkout</div>
@@ -837,14 +636,11 @@ input[type=range]::-webkit-slider-thumb {
     </div>
   </div>
 
-</div><!-- end main -->
+</div>
 
-<!-- SUCCESS SCREEN (hidden) -->
 <div id="successScreen" style="display:none; padding: 6rem 5vw; text-align:center;">
   <div style="width:80px;height:80px;border-radius:50%;background:rgba(76,175,125,0.15);border:2px solid #4CAF7D;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 1.5rem;">✅</div>
-  <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;text-transform:uppercase;margin-bottom:0.8rem;">
-    Order Placed!
-  </h2>
+  <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;text-transform:uppercase;margin-bottom:0.8rem;">Order Placed!</h2>
   <p style="color:var(--muted);font-size:1rem;line-height:1.7;max-width:480px;margin:0 auto;">
     Your MoveWell device is being configured with physical therapist input based on your profile. You'll receive a confirmation email shortly.
   </p>
@@ -860,35 +656,27 @@ function selectOpt(el, group) {
   el.classList.add('selected');
   liveUpdate();
 }
-
 function toggleCheck(el) {
   const selected = document.querySelectorAll('.opt-label.check.selected');
   if (!el.classList.contains('selected') && selected.length >= 3) return;
   el.classList.toggle('selected');
 }
-
 function togglePart(el) {
   el.classList.toggle('active');
   liveUpdate();
 }
-
 function liveUpdate() {
   const fname = document.getElementById('fname').value.trim();
   const lname = document.getElementById('lname').value.trim();
   document.getElementById('sum-name').textContent = (fname || lname) ? `${fname} ${lname}`.trim() : '—';
-
   const sport = document.getElementById('sport').value;
   document.getElementById('sum-sport').textContent = sport || '—';
-
   const parts = [...document.querySelectorAll('.body-part.active')].map(p => p.textContent.replace(/^\S+ /,'')).slice(0,3);
   document.getElementById('sum-parts').textContent = parts.length ? parts.join(', ') : '—';
-
   const city = document.getElementById('city').value.trim();
   document.getElementById('sum-city').textContent = city || '—';
-
   updateSteps();
 }
-
 function updateDelivery() {
   const d = document.getElementById('delivery').value;
   if (d === 'express') {
@@ -901,7 +689,6 @@ function updateDelivery() {
     document.getElementById('sum-total').textContent = '$25.00';
   }
 }
-
 function updateSteps() {
   const fname = document.getElementById('fname').value.trim();
   const lname = document.getElementById('lname').value.trim();
@@ -913,29 +700,24 @@ function updateSteps() {
   const state = document.getElementById('state').value;
   const pin   = document.getElementById('pin').value.trim();
   const addr1 = document.getElementById('addr1').value.trim();
-
   const done1 = fname && lname && email && phone && age;
   const done2 = sport;
   const done3 = document.querySelectorAll('.body-part.active').length > 0;
   const done4 = city && state && pin && addr1;
-
   setStep(1, 'active', done1);
   setStep(2, done1 ? 'active' : '', done2);
   setStep(3, done2 ? 'active' : '', done3);
   setStep(4, done3 ? 'active' : '', done4);
 }
-
 function setStep(n, active, done) {
   const el = document.getElementById('s'+n);
   el.classList.remove('active','done');
   if (done) el.classList.add('done');
   else if (active) el.classList.add('active');
 }
-
 function submitOrder() {
   const required = ['fname','lname','email','phone','age','addr1','city','state','pin'];
   let ok = true;
-
   required.forEach(id => {
     const el = document.getElementById(id);
     if (!el.value.trim()) {
@@ -944,35 +726,25 @@ function submitOrder() {
       el.addEventListener('input', () => el.style.borderColor = '', {once:true});
     }
   });
-
   if (!document.getElementById('sport').value) {
     document.getElementById('sport').style.borderColor = 'var(--error)';
     ok = false;
   }
-
   if (!document.getElementById('agreeTerms').checked) {
     alert('Please agree to the Terms & Conditions to continue.');
     ok = false;
   }
-
-  if (!ok) {
-    window.scrollTo({top: 0, behavior:'smooth'});
-    return;
-  }
-
+  if (!ok) { window.scrollTo({top: 0, behavior:'smooth'}); return; }
   const orderId = 'MW-' + Math.random().toString(36).substr(2,6).toUpperCase();
   const days = document.getElementById('delivery').value === 'express' ? 5 : 10;
   const d = new Date(); d.setDate(d.getDate() + days);
-  const opts = {weekday:'long', year:'numeric', month:'long', day:'numeric'};
-  const dateStr = d.toLocaleDateString('en-US', opts);
-
+  const dateStr = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
   document.getElementById('formArea').style.display = 'none';
   document.getElementById('successScreen').style.display = 'block';
   document.getElementById('orderIdDisplay').textContent = orderId;
   document.getElementById('deliveryDate').textContent = dateStr;
   window.scrollTo({top:0, behavior:'smooth'});
 }
-
 liveUpdate();
 </script>
 </body>
