@@ -329,7 +329,7 @@ input[type=range]::-webkit-slider-thumb {
   <h1>Get Your <em>Personalized</em><br>Recovery Device</h1>
   <p>Tell us about yourself — we'll configure your MoveWell device with physiotherapist input and deliver it to your doorstep in 10 days.</p>
   <div class="price-pill">
-    <span class="amount">$25</span>
+    <span class="amount">$45</span>
     <span class="note">one-time device — early adopter price</span>
   </div>
 </div>
@@ -617,12 +617,12 @@ input[type=range]::-webkit-slider-thumb {
         <div class="summary-row"><span class="label">Focus Areas</span><span class="val" id="sum-parts">—</span></div>
         <div class="summary-row"><span class="label">City</span><span class="val" id="sum-city">—</span></div>
         <div class="summary-row"><span class="label">Delivery</span><span class="val" id="sum-delivery">Standard (10 days)</span></div>
-        <div class="summary-row"><span class="label">MoveWell Device</span><span class="val">$25.00</span></div>
+        <div class="summary-row"><span class="label">MoveWell Device</span><span class="val">$45.00</span></div>
         <div class="summary-row"><span class="label">Shipping</span><span class="val" id="sum-shipping">Free</span></div>
       </div>
       <div class="total-row">
         <span class="label">Total</span>
-        <span class="price" id="sum-total">$25.00</span>
+        <span class="price" id="sum-total">$45.00</span>
       </div>
       <div style="padding: 1rem 1.5rem 1.5rem;">
         <button class="submit-btn" onclick="submitOrder()">⚡ Place Order</button>
@@ -682,11 +682,11 @@ function updateDelivery() {
   if (d === 'express') {
     document.getElementById('sum-delivery').textContent = 'Express (5 days)';
     document.getElementById('sum-shipping').textContent = '$9.99';
-    document.getElementById('sum-total').textContent = '$34.99';
+    document.getElementById('sum-total').textContent = '$54.99';
   } else {
     document.getElementById('sum-delivery').textContent = 'Standard (10 days)';
     document.getElementById('sum-shipping').textContent = 'Free';
-    document.getElementById('sum-total').textContent = '$25.00';
+    document.getElementById('sum-total').textContent = '$45.00';
   }
 }
 function updateSteps() {
