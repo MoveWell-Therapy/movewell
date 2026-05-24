@@ -38,11 +38,7 @@ header {
   display: flex; align-items: center; justify-content: space-between;
   position: sticky; top: 0; z-index: 100;
 }
-
-.logo-wrap {
-  display: flex; align-items: center;
-}
-
+.logo-wrap { display: flex; align-items: center; }
 .header-badge {
   background: rgba(245,166,35,0.12);
   border: 1px solid rgba(245,166,35,0.25);
@@ -297,6 +293,22 @@ input[type=range]::-webkit-slider-thumb {
 }
 .submit-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
 .submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { background: var(--muted); cursor: not-allowed; transform: none; }
+
+.spinner {
+  width: 18px; height: 18px; border: 2px solid rgba(0,0,0,0.3);
+  border-top-color: var(--dark); border-radius: 50%;
+  animation: spin 0.7s linear infinite; display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--error); color: #fff; padding: 0.8rem 1.5rem; border-radius: 8px;
+  font-weight: 600; font-size: 0.9rem; z-index: 9999;
+  transition: transform 0.3s ease; pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .form-panel { animation: fadeIn 0.4s ease both; }
@@ -315,6 +327,8 @@ input[type=range]::-webkit-slider-thumb {
 </head>
 <body>
 
+<div class="toast" id="toast"></div>
+
 <header>
   <div class="logo-wrap">
     <img src="https://raw.githubusercontent.com/MoveWell-Therapy/movewell/fae11083808dc59e0caed85acf4955a1d6755bd0/MOVEWELL%20(1)_page-0001.jpg"
@@ -329,8 +343,8 @@ input[type=range]::-webkit-slider-thumb {
   <h1>Get Your <em>Personalized</em><br>Recovery Device</h1>
   <p>Tell us about yourself — we'll configure your MoveWell device with physiotherapist input and deliver it to your doorstep in 10 days.</p>
   <div class="price-pill">
-    <span class="amount">$25</span>
-    <span class="note">one-time device — early adopter price</span>
+    <span class="amount">$29.99</span>
+    <span class="note">one-time, shipping included — early adopter price</span>
   </div>
 </div>
 
@@ -356,7 +370,6 @@ input[type=range]::-webkit-slider-thumb {
 </div>
 
 <div class="main" id="formArea">
-
   <div id="formCol">
 
     <div class="form-panel" id="panel1">
@@ -570,7 +583,7 @@ input[type=range]::-webkit-slider-thumb {
           <div class="field">
             <label>Delivery Speed</label>
             <select id="delivery" onchange="updateDelivery()">
-              <option value="standard">Standard — 10 days (Free)</option>
+              <option value="standard">Standard — 10 days (Included)</option>
               <option value="express">Express — 5 days (+$9.99)</option>
             </select>
           </div>
@@ -591,7 +604,7 @@ input[type=range]::-webkit-slider-thumb {
         <div class="field">
           <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;text-transform:none;letter-spacing:0;font-size:0.85rem;color:var(--text);font-weight:500;">
             <input type="checkbox" id="agreeTerms" style="width:16px;height:16px;padding:0;accent-color:var(--orange);">
-            I agree to MoveWell's <a href="#" style="color:var(--orange);">Terms & Conditions</a> and <a href="#" style="color:var(--orange);">Privacy Policy</a> <span class="req">*</span>
+            I agree to MoveWell's <a href="/terms" style="color:var(--orange);">Terms & Conditions</a> and <a href="/privacy" style="color:var(--orange);">Privacy Policy</a> <span class="req">*</span>
           </label>
         </div>
         <div class="field">
@@ -617,15 +630,18 @@ input[type=range]::-webkit-slider-thumb {
         <div class="summary-row"><span class="label">Focus Areas</span><span class="val" id="sum-parts">—</span></div>
         <div class="summary-row"><span class="label">City</span><span class="val" id="sum-city">—</span></div>
         <div class="summary-row"><span class="label">Delivery</span><span class="val" id="sum-delivery">Standard (10 days)</span></div>
-        <div class="summary-row"><span class="label">MoveWell Device</span><span class="val">$25.00</span></div>
-        <div class="summary-row"><span class="label">Shipping</span><span class="val" id="sum-shipping">Free</span></div>
+        <div class="summary-row"><span class="label">MoveWell Device</span><span class="val">$29.99</span></div>
+        <div class="summary-row"><span class="label">Shipping</span><span class="val" id="sum-shipping">Included</span></div>
       </div>
       <div class="total-row">
         <span class="label">Total</span>
-        <span class="price" id="sum-total">$25.00</span>
+        <span class="price" id="sum-total">$29.99</span>
       </div>
       <div style="padding: 1rem 1.5rem 1.5rem;">
-        <button class="submit-btn" onclick="submitOrder()">⚡ Place Order</button>
+        <button class="submit-btn" id="submitBtn" onclick="submitOrder()">
+          <span id="btnText">⚡ Place Order</span>
+          <div class="spinner" id="btnSpinner"></div>
+        </button>
       </div>
       <div class="trust-list">
         <div class="trust-item"><span class="trust-icon">🔒</span> Secure & encrypted checkout</div>
@@ -651,6 +667,14 @@ input[type=range]::-webkit-slider-thumb {
 </div>
 
 <script>
+function showToast(msg, color) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = color || 'var(--error)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
 function selectOpt(el, group) {
   document.querySelectorAll(`.opt-label[onclick*="${group}"]`).forEach(l => l.classList.remove('selected'));
   el.classList.add('selected');
@@ -665,6 +689,7 @@ function togglePart(el) {
   el.classList.toggle('active');
   liveUpdate();
 }
+
 function liveUpdate() {
   const fname = document.getElementById('fname').value.trim();
   const lname = document.getElementById('lname').value.trim();
@@ -677,33 +702,26 @@ function liveUpdate() {
   document.getElementById('sum-city').textContent = city || '—';
   updateSteps();
 }
+
 function updateDelivery() {
   const d = document.getElementById('delivery').value;
   if (d === 'express') {
     document.getElementById('sum-delivery').textContent = 'Express (5 days)';
     document.getElementById('sum-shipping').textContent = '$9.99';
-    document.getElementById('sum-total').textContent = '$34.99';
+    document.getElementById('sum-total').textContent = '$39.98';
   } else {
     document.getElementById('sum-delivery').textContent = 'Standard (10 days)';
-    document.getElementById('sum-shipping').textContent = 'Free';
-    document.getElementById('sum-total').textContent = '$25.00';
+    document.getElementById('sum-shipping').textContent = 'Included';
+    document.getElementById('sum-total').textContent = '$29.99';
   }
 }
+
 function updateSteps() {
-  const fname = document.getElementById('fname').value.trim();
-  const lname = document.getElementById('lname').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const age   = document.getElementById('age').value.trim();
-  const sport = document.getElementById('sport').value;
-  const city  = document.getElementById('city').value.trim();
-  const state = document.getElementById('state').value;
-  const pin   = document.getElementById('pin').value.trim();
-  const addr1 = document.getElementById('addr1').value.trim();
-  const done1 = fname && lname && email && phone && age;
-  const done2 = sport;
+  const v = id => document.getElementById(id).value.trim();
+  const done1 = v('fname') && v('lname') && v('email') && v('phone') && v('age');
+  const done2 = document.getElementById('sport').value;
   const done3 = document.querySelectorAll('.body-part.active').length > 0;
-  const done4 = city && state && pin && addr1;
+  const done4 = v('city') && document.getElementById('state').value && v('pin') && v('addr1');
   setStep(1, 'active', done1);
   setStep(2, done1 ? 'active' : '', done2);
   setStep(3, done2 ? 'active' : '', done3);
@@ -715,8 +733,54 @@ function setStep(n, active, done) {
   if (done) el.classList.add('done');
   else if (active) el.classList.add('active');
 }
-function submitOrder() {
-  const required = ['fname','lname','email','phone','age','addr1','city','state','pin'];
+
+function collectPayload(orderId) {
+  const freq    = document.querySelector('.opt-label[onclick*="freq"].selected');
+  const posture = document.querySelector('.opt-label[onclick*="posture"].selected');
+  const prior   = document.querySelector('.opt-label[onclick*="prior"].selected');
+  const goals   = [...document.querySelectorAll('.opt-label.check.selected')].map(el => el.textContent.trim());
+  const parts   = [...document.querySelectorAll('.body-part.active')].map(el => el.textContent.trim());
+  return {
+    orderId,
+    submittedAt: new Date().toISOString(),
+    personal: {
+      firstName: document.getElementById('fname').value.trim(),
+      lastName:  document.getElementById('lname').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      phone:     document.getElementById('phone').value.trim(),
+      age:       document.getElementById('age').value.trim(),
+      gender:    document.getElementById('gender').value,
+    },
+    activity: {
+      sport:        document.getElementById('sport').value,
+      frequency:    freq    ? freq.textContent.trim()    : '',
+      sittingHours: document.getElementById('sitHours').value,
+      posture:      posture ? posture.textContent.trim() : '',
+    },
+    recovery: {
+      painAreas:    parts,
+      painSeverity: document.getElementById('painLevel').value,
+      goals,
+      priorTools:   prior ? prior.textContent.trim() : '',
+      notes:        document.getElementById('notes').value.trim(),
+    },
+    delivery: {
+      address: document.getElementById('addr1').value.trim(),
+      city:    document.getElementById('city').value.trim(),
+      state:   document.getElementById('state').value,
+      zip:     document.getElementById('pin').value.trim(),
+      speed:   document.getElementById('delivery').value,
+      total:   document.getElementById('delivery').value === 'express' ? '$39.98' : '$29.99',
+    },
+    marketing: {
+      source:     document.getElementById('source').value,
+      newsletter: document.getElementById('newsletter').checked,
+    }
+  };
+}
+
+async function submitOrder() {
+  const required = ['fname','lname','email','phone','age','addr1','city','pin'];
   let ok = true;
   required.forEach(id => {
     const el = document.getElementById(id);
@@ -726,25 +790,64 @@ function submitOrder() {
       el.addEventListener('input', () => el.style.borderColor = '', {once:true});
     }
   });
+  if (!document.getElementById('state').value) {
+    document.getElementById('state').style.borderColor = 'var(--error)';
+    ok = false;
+  }
   if (!document.getElementById('sport').value) {
     document.getElementById('sport').style.borderColor = 'var(--error)';
     ok = false;
   }
   if (!document.getElementById('agreeTerms').checked) {
-    alert('Please agree to the Terms & Conditions to continue.');
+    showToast('Please agree to the Terms & Conditions to continue.');
     ok = false;
   }
-  if (!ok) { window.scrollTo({top: 0, behavior:'smooth'}); return; }
+  if (!ok) {
+    window.scrollTo({top: 0, behavior:'smooth'});
+    showToast('Please fill in all required fields.');
+    return;
+  }
+
+  const btn     = document.getElementById('submitBtn');
+  const btnText = document.getElementById('btnText');
+  const spinner = document.getElementById('btnSpinner');
+  btn.disabled = true;
+  btnText.textContent = 'Submitting…';
+  spinner.style.display = 'block';
+
   const orderId = 'MW-' + Math.random().toString(36).substr(2,6).toUpperCase();
-  const days = document.getElementById('delivery').value === 'express' ? 5 : 10;
-  const d = new Date(); d.setDate(d.getDate() + days);
-  const dateStr = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
-  document.getElementById('formArea').style.display = 'none';
-  document.getElementById('successScreen').style.display = 'block';
-  document.getElementById('orderIdDisplay').textContent = orderId;
-  document.getElementById('deliveryDate').textContent = dateStr;
-  window.scrollTo({top:0, behavior:'smooth'});
+  const payload = collectPayload(orderId);
+
+  // ⬇ Replace YOUR_FORM_ID with your Formspree form ID
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Submission failed');
+
+    const days = document.getElementById('delivery').value === 'express' ? 5 : 10;
+    const d = new Date(); d.setDate(d.getDate() + days);
+    const dateStr = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+    document.getElementById('formArea').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    document.getElementById('orderIdDisplay').textContent = orderId;
+    document.getElementById('deliveryDate').textContent = dateStr;
+    window.scrollTo({top:0, behavior:'smooth'});
+
+  } catch (err) {
+    btn.disabled = false;
+    btnText.textContent = '⚡ Place Order';
+    spinner.style.display = 'none';
+    showToast('Something went wrong. Please try again or email us directly.');
+    console.error('Order submission error:', err);
+  }
 }
+
 liveUpdate();
 </script>
 </body>
